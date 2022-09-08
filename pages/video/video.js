@@ -127,13 +127,6 @@ Page({
     // const sessionidValue = wx.getStorageSync('sessionid');
     let timeStr = new Date().getTime();
     let filePath = wx.env.USER_DATA_PATH + "/" + timeStr + fileType;
-    var uu =
-      this.data.$cuData.apiUrl +
-      "/v1/wx/video-image-file?url=" +
-      url +
-      "&type_str=" +
-      fileType;
-    console.log(uu);
     const downloadTask = wx.downloadFile({
       url:
         this.data.$cuData.apiUrl +
@@ -143,13 +136,37 @@ Page({
         fileType,
       filePath: filePath,
       success: (res) => {
-        if (res.statusCode === 200) {
+        if (res.statusCode === 200 && msg == "video") {
           wx.showToast({
             title: "连接正确",
             icon: "success",
           });
           console.log(res);
           wx.saveVideoToPhotosAlbum({
+            filePath: filePath,
+            success: function () {
+              wx.showToast({
+                title: "保存成功",
+                icon: "success",
+              });
+              this.percent = 0;
+            },
+            fail: function (e) {
+              console.log(e);
+              wx.showToast({
+                title: "保存失败，请稍后重试",
+                icon: "none",
+              });
+            },
+          });
+        }
+        if (res.statusCode === 200 && msg == "image") {
+          wx.showToast({
+            title: "连接正确",
+            icon: "success",
+          });
+          console.log(res);
+          wx.saveImageToPhotosAlbum({
             filePath: filePath,
             success: function () {
               wx.showToast({
