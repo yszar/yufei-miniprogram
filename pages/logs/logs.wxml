@@ -1,0 +1,25 @@
+<!--pages/logs/logs.wxml-->
+<ui-sys tabbar>
+	<ui-navbar shadow />
+	<view>
+		<ui-img mode='cover' ui="radius border" src="https://prod-3g053jsx715e5206-1306633415.tcloudbaseapp.com/static/img/banner.jpg?sign=fcda9ef48e0428806c954bf7ece410ad&t=1662578782" width='100%' height="400rpx" />
+	</view>
+	<view class="ui-container">
+		<view wx:if="{{logsList == undefined || logsList == null || logsList.length <= 0}}">
+			<ui-title title="没有历史记录" />
+		</view>
+		<view wx:else class=" p-4 download-btns">
+			<button class="ui-btn bg-red text-blue shadow shadow-blur btn" bindtap="copy" data-msg="desc">清空历史记录</button>
+		</view>
+		<ui-card wx:for="{{logsList}}" wx:key="index" ui="shadow m-3 radius">
+			<view class="p-4 text-grey text-14 border-bottom">
+				<text>{{item}}</text>
+			</view>
+			<view class="p-3 card-btns">
+				<button class="text-14 ui-btn bg-grey text-blue shadow card-btn" bindtap="copyStr" data-msg="{{item}}">复制链接</button>
+				<button class="text-14 ui-btn bg-blue text-blue shadow card-btn" bindtap="reParse" data-msg="{{item}}">重新解析</button>
+			</view>
+		</ui-card>
+
+	</view>
+</ui-sys>

@@ -1,0 +1,27 @@
+/* pages/logs/logs.wxss */
+.download-btns {
+  display: flex;
+  justify-content: space-around;
+}
+.download-btns .btn {
+  display: flex;
+  font-size: 30rpx;
+  text-align: center;
+  width: 550rpx;
+  height: 70rpx;
+  justify-content: center;
+  align-items: center;
+}
+.card-btns {
+  display: flex;
+  justify-content: space-around;
+}
+.card-btns .card-btn {
+  display: flex;
+  font-size: 30rpx;
+  text-align: center;
+  width: 180rpx;
+  height: 60rpx;
+  justify-content: center;
+  align-items: center;
+}

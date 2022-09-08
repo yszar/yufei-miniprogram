@@ -1,0 +1,20 @@
+.download-btns {
+  display: flex;
+  justify-content: space-around;
+}
+.download-btns .btn {
+  display: flex;
+  font-size: 30rpx;
+  text-align: center;
+  width: 250rpx;
+  height: 70rpx;
+  justify-content: center;
+  align-items: center;
+}
+.input-box {
+  display: block;
+}
+.ui-textarea-wrapper {
+  width: 100%;
+  margin: 30rpx;
+}
