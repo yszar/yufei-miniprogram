@@ -1,0 +1,41 @@
+{
+	"name": "mp-cu-main",
+	"version": "1.0.0",
+	"description": "<p align=\"center\">     <img width=\"160px\" src=\"https://github.com/iZaiZaiA/iZaiZaiA/blob/img/mp-cu/mp-cu.jpg\" /> </p>",
+	"main": "app.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"release-major": "standard-version --release-as major",
+		"release-minor": "standard-version --release-as minor",
+		"release-patch": "standard-version --release-as patch",
+		"release": "standard-version",
+		"release-static": "standard-version --release-as 3.3.3",
+		"changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/yszar/yufei-miniprogram.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/yszar/yufei-miniprogram/issues"
+	},
+	"homepage": "https://github.com/yszar/yufei-miniprogram#readme",
+	"devDependencies": {
+		"@commitlint/cli": "^17.1.2",
+		"@commitlint/config-conventional": "^17.1.0",
+		"husky": "^8.0.1"
+	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		]
+	},
+	"husky": {
+		"hooks": {
+			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+		}
+	}
+}

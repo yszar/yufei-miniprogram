@@ -4,9 +4,10 @@ Page({
     scrollTop: 0,
     swiperList: [],
     value: "",
-    disabled: "",
-    iconSpin: "",
+    disabled: false,
     videoUrl: "",
+    pasteParseLoading: false,
+    parseLoading: false,
     // 支持的平台
     appList: [],
   },
@@ -40,8 +41,8 @@ Page({
   },
   pasteParse() {
     this.setData({
-      disabled: "1",
-      iconSpin: "icon_spin",
+      disabled: true,
+      pasteParseLoading: true,
     });
     wx.getClipboardData({
       success: (res) => {
@@ -53,17 +54,24 @@ Page({
       fail: (e) => {
         console.log(e);
       },
-    });
-    this.setData({
-      disabled: "",
-      iconSpin: "",
+      complete: () => {
+        this.setData({
+          disabled: false,
+          pasteParseLoading: false,
+        });
+        console.log("停止转圈和disabled");
+      },
     });
   },
   parse() {
     this.setData({
-      disabled: "1",
-      iconSpin: "icon_spin",
+      disabled: true,
+      pasteParseLoading: true,
     });
     this.oSubmit();
+    this.setData({
+      disabled: false,
+      pasteParseLoading: false,
+    });
   },
 });

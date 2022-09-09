@@ -20,8 +20,12 @@
             </ui-form>
         </view>
         <view class=" p-4 download-btns">
-            <button class="ui-btn bg-blue shadow shadow-blue btn" wx:if="{{value == ''}}" bindtap="pasteParse">粘贴并解析</button>
-            <button class="ui-btn bg-blue shadow shadow-blue btn" wx:if="{{value !='' }}" bindtap="parse">一键去水印</button>
+            <button class="ui-btn bg-blue shadow shadow-blue btn" model:disabled="{{disabled}}" wx:if="{{value == ''}}" bindtap="pasteParse">
+                <ui-loading wx:if="{{pasteParseLoading == true}}" model:loading="{{pasteParseLoading}}" color="text-white" />粘贴并解析
+            </button>
+            <button class="ui-btn bg-blue shadow shadow-blue btn" model:disabled="{{disabled}}" wx:if="{{value !=''}}" bindtap="parse">
+                <ui-loading wx:if="{{parseLoading == true}}" model:loading="{{parseLoading}}" color="text-white" />一键去水印
+            </button>
             <button class="ui-btn bg-grey text-blue shadow shadow-blur btn" wx:if="{{value == ''}}" bindtap="paste">粘贴内容</button>
             <button class="ui-btn bg-grey text-blue shadow shadow-blur btn" wx:if="{{value != ''}}" bindtap="clearVlaue">清空内容</button>
         </view>

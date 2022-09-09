@@ -13,7 +13,9 @@
 		<view wx:if="{{current===0}}">
 			<video class="videoPlayer" id="myVideo" model:src="{{videoUrl}}" controls autoplay></video>
 			<view class=" p-4 download-btns">
-				<button class="ui-btn bg-blue shadow shadow-blue btn" bindtap="save" data-msg="video">保存视频</button>
+				<button class="ui-btn bg-blue shadow shadow-blue btn" model:disabled="{{videoDisabled}}" bindtap="save" data-msg="video">
+					<ui-loading wx:if="{{saveVideoLoading == true}}" model:loading="{{saveVideoLoading}}" color="text-white" />保存视频
+				</button>
 				<button class="ui-btn bg-grey text-blue shadow shadow-blur btn" bindtap="copy" data-msg="video">复制链接</button>
 			</view>
 		</view>
@@ -22,7 +24,9 @@
 				<image class="shadow-blur radius border" mode="widthFix" model:src="{{imageUrl}}" />
 			</view>
 			<view class=" p-4 download-btns">
-				<button class="ui-btn bg-blue shadow shadow-blue btn " bindtap="save" data-msg="image">保存图片</button>
+				<button class="ui-btn bg-blue shadow shadow-blue btn" model:disabled="{{imageDisabled}}" bindtap="save" data-msg="image">
+					<ui-loading wx:if="{{saveImageLoading == true}}" model:loading="{{saveImageLoading}}" color="text-white" />保存图片
+				</button>
 				<button class="ui-btn bg-grey text-blue shadow shadow-blur btn" bindtap="copy" data-msg="image">复制链接</button>
 			</view>
 		</view>

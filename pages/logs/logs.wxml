@@ -13,7 +13,7 @@
 		</view>
 		<ui-card wx:for="{{logsList}}" wx:key="index" ui="shadow m-3 radius">
 			<view class="p-4 text-grey text-14 border-bottom">
-				<text>{{item}}</text>
+				<text user-select>{{item}}</text>
 			</view>
 			<view class="p-3 card-btns">
 				<button class="text-14 ui-btn bg-grey text-blue shadow card-btn" bindtap="copyStr" data-msg="{{item}}">复制链接</button>

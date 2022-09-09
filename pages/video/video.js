@@ -10,6 +10,10 @@ Page({
     imageUrl: "",
     desc: "",
     progress: "",
+    imageDisabled: false,
+    saveImageLoading: false,
+    videoDisabled: false,
+    saveVideoLoading: false,
   },
 
   /**
@@ -115,12 +119,19 @@ Page({
     });
   },
   download(msg) {
-    // this.session();
     if (msg == "video") {
+      this.setData({
+        videoDisabled: true,
+        saveVideoLoading: true,
+      });
       var url = encodeURIComponent(this.data.videoUrl);
       var fileType = ".mp4";
     }
     if (msg == "image") {
+      this.setData({
+        imageDisabled: true,
+        saveImageLoading: true,
+      });
       var url = encodeURIComponent(this.data.imageUrl);
       var fileType = ".jpg";
     }
@@ -158,6 +169,12 @@ Page({
                 icon: "none",
               });
             },
+            complete: () => {
+              this.setData({
+                videoDisabled: false,
+                saveVideoLoading: false,
+              });
+            },
           });
         }
         if (res.statusCode === 200 && msg == "image") {
@@ -180,6 +197,12 @@ Page({
               wx.showToast({
                 title: "保存失败，请稍后重试",
                 icon: "none",
+              });
+            },
+            complete: () => {
+              this.setData({
+                imageDisabled: false,
+                saveImageLoading: false,
               });
             },
           });
