@@ -51,6 +51,26 @@ Page({
    */
   onShareAppMessage() {},
 
+  empty() {
+    this.$showDialog({
+      title: "确认清空",
+      content: "历史记录清空后不可恢复，确认清空历史记录吗？",
+      success: (res) => {
+        console.log(res);
+        if (res.confirm) {
+          this.$success({
+            title: "点击了确定",
+          });
+          wx.removeStorage({
+            key: "videoLogs",
+            success(res) {
+              console.log(res);
+            },
+          });
+        }
+      },
+    });
+  },
   copyStr(event) {
     wx.setClipboardData({
       data: event.currentTarget.dataset.msg,

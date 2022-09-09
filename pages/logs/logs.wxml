@@ -6,10 +6,10 @@
 	</view>
 	<view class="ui-container">
 		<view wx:if="{{logsList == undefined || logsList == null || logsList.length <= 0}}">
-			<ui-title title="没有历史记录" />
+			<ui-title title="没有历史记录" titleUi="text-blue" tpl="center-column" hasLine />
 		</view>
 		<view wx:else class=" p-4 download-btns">
-			<button class="ui-btn bg-red text-blue shadow shadow-blur btn" bindtap="copy" data-msg="desc">清空历史记录</button>
+			<button class="ui-btn bg-red text-blue shadow shadow-blur btn" bindtap="empty" data-msg="desc">清空历史记录</button>
 		</view>
 		<ui-card wx:for="{{logsList}}" wx:key="index" ui="shadow m-3 radius">
 			<view class="p-4 text-grey text-14 border-bottom">
