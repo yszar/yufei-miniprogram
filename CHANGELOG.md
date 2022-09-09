@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/yszar/yufei-miniprogram/compare/v1.0.0...v1.1.0) (2022-09-09)
+
+
+### ✨ Features | 新功能
+
+* 新增防止重复点击按钮功能 ([4e274c4](https://github.com/yszar/yufei-miniprogram/commit/4e274c417f9f4c1ad0f6b9ad29e8dc70f4d24e0f))
+
 ## 1.0.0 (2022-09-08)
 
 
