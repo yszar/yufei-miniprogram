@@ -16,6 +16,11 @@ Page({
       appList: this.data.$cuData.appList,
     });
   },
+  onShow() {
+    this.setData({
+      videoUrl: "",
+    });
+  },
   // 监听用户滑动页面事件。
   onPageScroll(e) {
     // 注意：请只在需要的时候才在 page 中定义此方法，不要定义空方法。以减少不必要的事件派发对渲染层-逻辑层通信的影响。
@@ -34,16 +39,13 @@ Page({
   clearVlaue() {
     this.setData({
       value: "",
+      videoUrl: "",
     });
   },
   paste() {
     this.pastes();
   },
   pasteParse() {
-    this.setData({
-      disabled: true,
-      pasteParseLoading: true,
-    });
     wx.getClipboardData({
       success: (res) => {
         this.setData({
@@ -64,14 +66,6 @@ Page({
     });
   },
   parse() {
-    this.setData({
-      disabled: true,
-      pasteParseLoading: true,
-    });
     this.oSubmit();
-    this.setData({
-      disabled: false,
-      pasteParseLoading: false,
-    });
   },
 });

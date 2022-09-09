@@ -149,7 +149,7 @@ Page({
       success: (res) => {
         if (res.statusCode === 200 && msg == "video") {
           wx.showToast({
-            title: "连接正确",
+            title: "下载完成",
             icon: "success",
           });
           console.log(res);
@@ -179,7 +179,7 @@ Page({
         }
         if (res.statusCode === 200 && msg == "image") {
           wx.showToast({
-            title: "连接正确",
+            title: "下载完成",
             icon: "success",
           });
           console.log(res);

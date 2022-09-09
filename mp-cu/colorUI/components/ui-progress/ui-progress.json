@@ -1,6 +1,4 @@
 {
   "component": true,
-  "usingComponents": {
-    "ui-fixed": "../ui-fixed/ui-fixed"
-  }
+  "usingComponents": {}
 }

@@ -166,6 +166,10 @@ export const colorUI = new ColorUI({
       });
     },
     oSubmit: function () {
+      this.setData({
+        disabled: true,
+        pasteParseLoading: true,
+      });
       var a = this;
       this.replaceReg(a.data.value),
         "" != a.data.videoUrl && a.regUrl(a.data.videoUrl)
@@ -185,20 +189,24 @@ export const colorUI = new ColorUI({
               },
               success: function (t) {
                 wx.hideLoading(),
-                  t.data.code == 0
-                    ? (a.showToast("解析成功", "success"),
-                      a.saveToStorage(a.data.value),
-                      wx.setStorageSync("dataUrl", t.data.data.video),
-                      wx.navigateTo({
-                        url: "/pages/video/video",
-                        success: function (res) {
-                          // 通过eventChannel向被打开页面传送数据
-                          res.eventChannel.emit("acceptDataFromOpenerPage", {
-                            data: t.data.data,
-                          });
-                        },
-                      }))
-                    : a.showToast("解析失败");
+                  a.setData({
+                    disabled: false,
+                    pasteParseLoading: false,
+                  });
+                t.data.code == 0
+                  ? (a.showToast("解析成功", "success"),
+                    a.saveToStorage(a.data.value),
+                    wx.setStorageSync("dataUrl", t.data.data.video),
+                    wx.navigateTo({
+                      url: "/pages/video/video",
+                      success: function (res) {
+                        // 通过eventChannel向被打开页面传送数据
+                        res.eventChannel.emit("acceptDataFromOpenerPage", {
+                          data: t.data.data,
+                        });
+                      },
+                    }))
+                  : a.showToast("解析失败");
               },
               fail: function (t) {
                 wx.hideLoading(),

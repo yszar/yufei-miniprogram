@@ -79,7 +79,6 @@ Page({
   reParse(event) {
     this.setData({
       disabled: "1",
-      iconSpin: "icon_spin",
       value: event.currentTarget.dataset.msg,
     });
     this.oSubmit();
