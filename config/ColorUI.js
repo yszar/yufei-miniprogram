@@ -217,6 +217,10 @@ export const colorUI = new ColorUI({
                   a.showToast("解析失败"),
                   console.log("fail:失败");
                 console.log(t);
+                a.setData({
+                  disabled: false,
+                  pasteParseLoading: false,
+                });
               },
             }))
           : a.showToast("请复制视频链接");
