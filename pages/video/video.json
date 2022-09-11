@@ -4,6 +4,7 @@
     "ui-img": "/mp-cu/colorUI/components/ui-img/ui-img",
     "ui-navbar": "/mp-cu/colorUI/components/ui-navbar/ui-navbar",
     "ui-tab": "/mp-cu/colorUI/components/ui-tab/ui-tab",
-    "ui-loading": "/mp-cu/colorUI/components/ui-loading/ui-loading"
+    "ui-loading": "/mp-cu/colorUI/components/ui-loading/ui-loading",
+    "ui-card": "/mp-cu/colorUI/components/ui-card/ui-card"
   }
 }
