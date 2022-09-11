@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.4](https://github.com/yszar/yufei-miniprogram/compare/v1.1.3...v1.1.4) (2022-09-11)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 修复了解析失败按钮不恢复的bug ([5be1540](https://github.com/yszar/yufei-miniprogram/commit/5be1540cc832b088d1acd5060e13f4227451bf45))
+
 ### [1.1.3](https://github.com/yszar/yufei-miniprogram/compare/v1.1.2...v1.1.3) (2022-09-11)
 
 
