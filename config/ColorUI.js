@@ -206,7 +206,11 @@ export const colorUI = new ColorUI({
                         });
                       },
                     }))
-                  : a.showToast("解析失败");
+                  : a.showToast("解析失败"),
+                  a.setData({
+                    disabled: false,
+                    pasteParseLoading: false,
+                  });
               },
               fail: function (t) {
                 wx.hideLoading(),
