@@ -1,3 +1,14 @@
 {
-    "usingComponents": {}
+    "usingComponents": {
+        "ui-sys": "/mp-cu/colorUI/components/ui-sys/ui-sys",
+        "ui-navbar": "/mp-cu/colorUI/components/ui-navbar/ui-navbar",
+        "ui-img": "/mp-cu/colorUI/components/ui-img/ui-img",
+        "ui-menu-item": "/mp-cu/colorUI/components/ui-menu-item/ui-menu-item",
+        "ui-avatar": "/mp-cu/colorUI/components/ui-avatar/ui-avatar",
+        "ui-avatar-stack": "/mp-cu/colorUI/components/ui-avatar-stack/ui-avatar-stack",
+        "ui-form": "/mp-cu/colorUI/components/ui-form/ui-form",
+        "ui-title": "/mp-cu/colorUI/components/ui-title/ui-title",
+        "ui-input-box": "/mp-cu/colorUI/components/ui-input-box/ui-input-box",
+        "ui-loading": "/mp-cu/colorUI/components/ui-loading/ui-loading"
+    }
 }

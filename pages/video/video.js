@@ -28,7 +28,7 @@ Page({
       that.setData({
         videoInfo: data.data,
         videoUrl: data.data.video,
-        imageUrl: data.data.cover[0],
+        imageUrl: data.data.cover,
         desc: data.data.desc,
       });
       console.log(that.data.videoUrl);

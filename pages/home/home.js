@@ -33,7 +33,7 @@ Page({
   onInput() {},
   toAppList() {
     wx.navigateTo({
-      url: "/pages/applist/applist",
+      url: "/pages/logsAndList/pages/applist/applist",
     });
   },
   clearVlaue() {
