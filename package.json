@@ -1,6 +1,6 @@
 {
 	"name": "mp-cu-main",
-	"version": "1.1.2",
+	"version": "1.1.3",
 	"description": "<p align=\"center\">     <img width=\"160px\" src=\"https://github.com/iZaiZaiA/iZaiZaiA/blob/img/mp-cu/mp-cu.jpg\" /> </p>",
 	"main": "app.js",
 	"scripts": {
