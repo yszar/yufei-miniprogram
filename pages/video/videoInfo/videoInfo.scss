@@ -1,0 +1,27 @@
+/* pages/video/video.wxss */
+.videoPlayer {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 550rpx;
+}
+.download-btns {
+  display: flex;
+  justify-content: space-around;
+}
+.download-btns .btn {
+  display: flex;
+  // font-size: 30rpx;
+  text-align: center;
+  width: 250rpx;
+  height: 70rpx;
+  justify-content: center;
+  align-items: center;
+}
+.img {
+  text-align: center;
+}
+.navtab {
+height: 100rpx;
+}

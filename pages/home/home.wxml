@@ -1,33 +1,16 @@
-<ui-sys tabbar>
-    <ui-navbar shadow />
-    <view>
-        <ui-img mode='cover' ui="radius border" src="https://prod-3g053jsx715e5206-1306633415.tcloudbaseapp.com/static/img/banner.jpg?sign=fcda9ef48e0428806c954bf7ece410ad&t=1662578782" width='100%' height="400rpx" />
-    </view>
-    <view class="ui-container">
-        <view class="appList bg-white radius shadow mt-4">
-            <ui-menu-item arrow title="支持平台" icon="cicon-lock-open text-orange" isAction bindtap="toAppList">
-                <ui-avatar-stack ui="mx-3" slot="action">
-                    <ui-avatar wx:for="{{appList}}" src="{{item.image}}" ui="round" stack wx:key="index" />
-                </ui-avatar-stack>
-            </ui-menu-item>
-        </view>
-        <view class="videoStr">
-            <ui-form ui="ui-BG mt-4 radius shadow mt-4">
-                <ui-title title="一键去水印" titleColor="text-blue" tpl="center-column" hasDot />
-                <ui-input-box class="border-top input-box" isType="textarea">
-                    <textarea class="ui-textarea-wrapper" placeholder="请输入复制的文本" maxlength="300" model:value="{{value}}" bindinput="onInput" />
-                </ui-input-box>
-            </ui-form>
-        </view>
-        <view class=" p-4 download-btns">
-            <button class="ui-btn bg-blue shadow shadow-blue btn" model:disabled="{{disabled}}" wx:if="{{value == ''}}" bindtap="pasteParse">
-                <ui-loading wx:if="{{pasteParseLoading == true}}" model:loading="{{pasteParseLoading}}" color="text-white" />粘贴并解析
-            </button>
-            <button class="ui-btn bg-blue shadow shadow-blue btn" model:disabled="{{disabled}}" wx:if="{{value !=''}}" bindtap="parse">
-                <ui-loading wx:if="{{pasteParseLoading == true}}" model:loading="{{pasteParseLoading}}" color="text-white" />一键去水印
-            </button>
-            <button class="ui-btn bg-grey text-blue shadow shadow-blur btn" wx:if="{{value == ''}}" bindtap="paste">粘贴内容</button>
-            <button class="ui-btn bg-grey text-blue shadow shadow-blur btn" wx:if="{{value != ''}}" bindtap="clearVlaue">清空内容</button>
-        </view>
-    </view>
+<!--pages/home/home.wxml-->
+<ui-sys>
+	<ui-navbar shadow />
+	<view class="m-3 px-3 pt-3 radius ui-BG shadow">
+		<view class="ui-grid grid-square ui-cols-5 p-3">
+		<block wx:for="{{toolsList}}" wx:key="index" >
+			<view wx:if="{{item.is_show == true}}" class="ui-item radius tool" id="{{item.tool_name}}" bindtap="toTool">
+				<image class="image" mode="widthFix" src="{{item.tool_img}}"></image>
+				<view class="mt-1">
+					<text class="text-10">{{item.tool_name}}</text>
+				</view>
+			</view>
+			</block>
+		</view>
+	</view>
 </ui-sys>

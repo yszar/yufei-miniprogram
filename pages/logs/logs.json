@@ -4,6 +4,12 @@
     "ui-navbar": "/mp-cu/colorUI/components/ui-navbar/ui-navbar",
     "ui-img": "/mp-cu/colorUI/components/ui-img/ui-img",
     "ui-title": "/mp-cu/colorUI/components/ui-title/ui-title",
-    "ui-card": "/mp-cu/colorUI/components/ui-card/ui-card"
+    "ui-card": "/mp-cu/colorUI/components/ui-card/ui-card",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-empty": "@vant/weapp/empty/index",
+    "ui-tag": "/mp-cu/colorUI/components/ui-tag/ui-tag",
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "i-load-more": "/iView/load-more/index"
+
   }
 }

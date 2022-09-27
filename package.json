@@ -26,7 +26,8 @@
 	"devDependencies": {
 		"@commitlint/cli": "^17.1.2",
 		"@commitlint/config-conventional": "^17.1.0",
-		"husky": "^8.0.1"
+		"husky": "^8.0.1",
+		"miniprogram-api-typings": "^3.6.0"
 	},
 	"commitlint": {
 		"extends": [
@@ -37,5 +38,8 @@
 		"hooks": {
 			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
 		}
+	},
+	"dependencies": {
+		"@vant/weapp": "^1.10.5"
 	}
 }

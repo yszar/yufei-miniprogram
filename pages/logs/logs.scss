@@ -19,9 +19,23 @@
 .card-btns .card-btn {
   display: flex;
   font-size: 30rpx;
-  text-align: center;
+  text-align: right;
   width: 180rpx;
   height: 60rpx;
+  justify-content: center;
+  align-items: center;
+}
+.appTag image {
+  width: 20rpx !important;
+  height: 20rpx !important;
+}
+.tags {
+  display: flex;
+  justify-content: right;
+}
+.tags ui-tag {
+  display: flex;
+  text-align: right;
   justify-content: center;
   align-items: center;
 }

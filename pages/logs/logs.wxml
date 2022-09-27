@@ -1,25 +1,29 @@
 <!--pages/logs/logs.wxml-->
-<ui-sys tabbar>
+<ui-sys>
 	<ui-navbar shadow />
-	<view>
-		<ui-img mode='cover' ui="radius border" src="https://prod-3g053jsx715e5206-1306633415.tcloudbaseapp.com/static/img/banner.jpg?sign=fcda9ef48e0428806c954bf7ece410ad&t=1662578782" width='100%' height="400rpx" />
-	</view>
-	<view class="ui-container">
+	<view class="ui-container mb-5">
+		<van-dialog id="van-dialog" />
 		<view wx:if="{{logsList == undefined || logsList == null || logsList.length <= 0}}">
-			<ui-title title="没有历史记录" titleUi="text-blue" tpl="center-column" hasLine />
+			<van-empty description="历史记录空空如也" />
 		</view>
-		<view wx:else class=" p-4 download-btns">
-			<button class="ui-btn bg-red text-blue shadow shadow-blur btn" bindtap="empty" data-msg="desc">清空历史记录</button>
+		<view wx:else class="p-4 download-btns">
+			<button class="ui-btn bg-red text-blue shadow btn" bindtap="empty" data-msg="desc">清空历史记录</button>
 		</view>
 		<ui-card wx:for="{{logsList}}" wx:key="index" ui="shadow m-3 radius">
-			<view class="p-4 text-grey text-14 border-bottom">
-				<text user-select>{{item}}</text>
+			<view class="p-4 text-black text-14">
+				<text user-select>{{item.videoText}}</text>
+			</view>
+			<view class="border-bottom tags p-2">
+				<ui-tag ui="sm bg-cyan-thin" info="{{item.appName}}" src="{{item.src}}" />
+				<ui-tag ui="sm bg-grey-thin" info="提交时间: {{item.timestamp}}" />
 			</view>
 			<view class="p-3 card-btns">
-				<button class="text-14 ui-btn bg-grey text-blue shadow card-btn" bindtap="copyStr" data-msg="{{item}}">复制链接</button>
-				<button class="text-14 ui-btn bg-blue text-blue shadow card-btn" bindtap="reParse" data-msg="{{item}}">重新解析</button>
+				<button class="text-12 ui-btn border-blue bg-blue-thin text-blue shadow card-btn" bindtap="copyStr" data-msg="{{item.videoText}}">复制链接</button>
+				<button class="text-12 ui-btn bg-blue text-blue shadow card-btn" bindtap="reParse" data-msg="{{item.videoText}}">重新解析</button>
 			</view>
 		</ui-card>
-
 	</view>
+	<i-load-more loading="{{ true }}" />
+	<i-load-more tip="上拉加载更多" loading="{{ false }}" />
+	<i-load-more wx:if="{{loadAll == true}}" tip="没有更多记录了" loading="{{ false }}" />
 </ui-sys>

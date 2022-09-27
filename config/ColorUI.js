@@ -7,7 +7,7 @@ export const colorUI = new ColorUI({
     text: 1,
     footer: false,
     share: true,
-    shareTitle: "雨非去水印",
+    shareTitle: "雨非工具",
     homePath: "/pages/home/home",
     tabBar: [
       {
@@ -27,45 +27,35 @@ export const colorUI = new ColorUI({
     ],
   },
   data: {
-    apiUrl: "https://api.oltools.net",
-    VideoInfo: {},
-    videoUrl: "",
-    appList: [
-      {
-        title: "抖音",
-        image: "/static/app-logo/logo-douyin.png",
-      },
-      {
-        title: "快手",
-        image: "/static/app-logo/logo-gitShow.png",
-      },
-      {
-        title: "皮皮虾",
-        image: "/static/app-logo/logo-ppx.png",
-      },
-      {
-        title: "火山",
-        image: "/static/app-logo/logo-volcano.png",
-      },
-      {
-        title: "西瓜",
-        image: "/static/app-logo/logo-watermelon.png",
-      },
-      {
-        title: "最右",
-        image: "/static/app-logo/logo-zuiyou.png",
-      },
-      {
-        title: "今日头条",
-        image: "/static/app-logo/logo-toutiao.png",
-      },
-      {
-        title: "微视",
-        image: "/static/app-logo/logo-microview.png",
-      },
-    ],
+    apiUrl: "https://mp-api.oltools.net",
   },
   methods: {
+    formatDate(value) {
+      var date = new Date(value);
+      var y = date.getFullYear(),
+        m = date.getMonth() + 1,
+        d = date.getDate(),
+        h = date.getHours(),
+        i = date.getMinutes(),
+        s = date.getSeconds();
+      if (m < 10) {
+        m = "0" + m;
+      }
+      if (d < 10) {
+        d = "0" + d;
+      }
+      if (h < 10) {
+        h = "0" + h;
+      }
+      if (i < 10) {
+        i = "0" + i;
+      }
+      if (s < 10) {
+        s = "0" + s;
+      }
+      var t = y + "年" + m + "月" + d + "日 " + h + ":" + i + ":" + s;
+      return t;
+    },
     copyUrl(msg) {
       let data;
       switch (msg) {
@@ -73,7 +63,7 @@ export const colorUI = new ColorUI({
           data = this.data.videoUrl;
           break;
         case "image":
-          data = this.data.imageUrl;
+          data = this.data.imageUrl[0];
           break;
         case "desc":
           data = this.data.videoInfo.desc;
@@ -83,36 +73,33 @@ export const colorUI = new ColorUI({
       }
       wx.setClipboardData({
         data: data,
-        success: function () {
+      })
+        .then(
           wx.showToast({
             title: "已复制到剪贴板",
             icon: "success",
-          });
-        },
-        fail: function (e) {
-          console.log(e);
+          })
+        )
+        .catch(
           wx.showToast({
             title: "复制失败",
             icon: "error",
-          });
-        },
-      });
+          })
+        );
     },
-
     pastes() {
-      wx.getClipboardData({
-        success: (res) => {
+      wx.getClipboardData()
+        .then((res) => {
           this.setData({
             value: res.data,
           });
-        },
-        fail: (e) => {
+        })
+        .catch((e) => {
           console.log(e);
-        },
-      });
+        });
     },
     replaceReg: function (t) {
-      let a = /(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g;
+      let a = /(http:\/\/|https:\/\/)((\w|=|:|\?|\.|\/|&|-)+)/g;
       return t.replace(a, (t) => {
         this.setData({
           videoUrl: t,
@@ -166,77 +153,108 @@ export const colorUI = new ColorUI({
       });
     },
     oSubmit: function () {
-      this.setData({
-        disabled: true,
-        pasteParseLoading: true,
-      });
       var a = this;
-      this.replaceReg(a.data.value),
-        "" != a.data.videoUrl && a.regUrl(a.data.videoUrl)
-          ? (wx.showLoading({
-              title: "正在解析视频",
-            }),
-            wx.cloud.callContainer({
-              config: {
-                env: "prod-3g053jsx715e5206",
-              },
-              path: "/v1/wx/video-info",
-              data: {
-                url: a.data.videoUrl,
-              },
-              header: {
-                "X-WX-SERVICE": "yfqsy",
-              },
-              success: function (t) {
-                wx.hideLoading(),
-                  a.setData({
-                    disabled: false,
-                    pasteParseLoading: false,
+      this.replaceReg(a.data.value);
+      if (a.data.videoUrl && a.regUrl(a.data.videoUrl)) {
+        wx.showLoading({
+          title: "正在解析视频",
+          mask: true,
+        });
+        wx.cloud
+          .callContainer({
+            config: {
+              env: "prod-3g053jsx715e5206",
+            },
+            path: "/v1/wx/video-info",
+            data: {
+              url: a.data.videoUrl,
+            },
+            header: {
+              "X-WX-SERVICE": "yfqsy",
+            },
+          })
+          .then((t) => {
+            if (t.data.code == 0) {
+              console.log(t.data.data);
+              let app = getApp();
+              const db = wx.cloud.database();
+              const _ = db.command;
+              db.collection("remove_logo_logs")
+                .where(
+                  // _.and({
+                  //   unionid: app.globalData.unionid,
+                  { videoText: a.data.value, unionid: app.globalData.unionid }
+                  // })
+                )
+                .field({ _id: true })
+                .get()
+                .then((res) => {
+                  wx.cloud.init({ env: "yf-tools-5gwumn3lb5ba64bc" });
+                  if (res.data.length > 0) {
+                    wx.cloud
+                      .callFunction({
+                        name: "updateTimestamp",
+                        data: { _id: res.data[0]._id },
+                      })
+                      .then((res) => {
+                        console.log("我成功了", res);
+                      })
+                      .catch((err) => {
+                        console.error("我的错", err);
+                      });
+                    // console.log("resid",res);
+                    // db.collection("remove_logo_logs")
+                    //   .where({
+                    //     _id: res.data[0]._id,
+                    //   })
+                    //   .update({ data: { timestamp: Date.parse(new Date()) } })
+                    //   .then((res) => {
+                    //     if (res.stats.updated>0) {
+                    //       console.log("更新成功");
+                    //     }
+                    //     console.log(res);
+                    //   });
+                  } else {
+                    db.collection("remove_logo_logs")
+                      .add({
+                        // data 字段表示需新增的 JSON 数据
+                        data: {
+                          unionid: app.globalData.unionid,
+                          videoText: a.data.value,
+                          timestamp: Date.parse(new Date()),
+                          appName: t.data.data.app_name,
+                        },
+                      })
+                      .then((res) => {
+                        console.log(res);
+                      })
+                      .catch(console.error);
+                  }
+                })
+                .catch(console.error);
+
+              wx.hideLoading();
+              wx.showToast("解析成功", "success");
+              wx.navigateTo({
+                url: "/pages/video/videoInfo/videoInfo",
+              })
+                .then((next) => {
+                  next.eventChannel.emit("videoInfo", {
+                    data: t.data.data,
                   });
-                t.data.code == 0
-                  ? (a.showToast("解析成功", "success"),
-                    a.saveToStorage(a.data.value),
-                    wx.setStorageSync("dataUrl", t.data.data.video),
-                    wx.navigateTo({
-                      url: "/pages/video/video",
-                      success: function (res) {
-                        // 通过eventChannel向被打开页面传送数据
-                        res.eventChannel.emit("acceptDataFromOpenerPage", {
-                          data: t.data.data,
-                        });
-                      },
-                    }))
-                  : a.showToast("解析失败"),
-                  a.setData({
-                    disabled: false,
-                    pasteParseLoading: false,
-                  });
-              },
-              fail: function (t) {
-                wx.hideLoading(),
-                  a.showToast("解析失败"),
-                  console.log("fail:失败");
-                console.log(t);
-                a.setData({
-                  disabled: false,
-                  pasteParseLoading: false,
+                })
+                .catch((e) => {
+                  wx.hideLoading();
+                  wx.showToast("解析失败", "error");
+                  console.log(e);
                 });
-              },
-            }))
-          : a.showToast("请复制视频链接");
-    },
-    showToast: function (o) {
-      var t =
-          arguments.length > 1 && void 0 !== arguments[1]
-            ? arguments[1]
-            : "none",
-        n =
-          arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : 1500;
-      wx.showToast({
-        title: o,
-        icon: t,
-        duration: n,
-      });
+            } else {
+              a.showToast("解析失败");
+            }
+          });
+      } else {
+        wx.showToast("请复制视频链接");
+      }
     },
   },
 });

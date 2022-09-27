@@ -1,0 +1,35 @@
+<ui-sys>
+    <ui-navbar shadow />
+    <view>
+        <ui-img mode='cover' ui="radius border" src="https://prod-3g053jsx715e5206-1306633415.tcloudbaseapp.com/static/img/banner.jpg?sign=fcda9ef48e0428806c954bf7ece410ad&t=1662578782" width='100%' height="400rpx" />
+    </view>
+    <view class="ui-container">
+        <view class="appList bg-white radius shadow mt-4">
+            <ui-menu-item arrow title="支持平台" icon="cicon-lock-open text-orange" isAction bindtap="toAppList">
+                <ui-avatar-stack ui="mx-3" slot="action">
+                    <ui-avatar wx:for="{{appList}}" src="{{item.app_img}}" ui="round" stack wx:key="index" />
+                </ui-avatar-stack>
+            </ui-menu-item>
+        </view>
+        <view class="videoStr">
+            <ui-form ui="ui-BG mt-4 radius shadow mt-4">
+                <ui-title title="一键去水印" titleColor="text-blue" tpl="center-column" hasDot />
+                <ui-input-box class="border-top input-box" isType="textarea">
+                    <textarea class="ui-textarea-wrapper" placeholder="请输入复制的文本" maxlength="300" model:value="{{value}}" bindinput="onInput" />
+                </ui-input-box>
+            </ui-form>
+        </view>
+        <view class=" p-4 download-btn">
+            <button class="ui-btn bg-blue shadow btn" wx:if="{{value == ''}}" bindtap="pasteParse">
+                <!-- <ui-loading wx:if="{{btnLoading == true}}" model:loading="{{btnLoading}}" color="text-white" /> -->
+                粘贴并解析
+            </button>
+            <button class="ui-btn bg-blue shadow btn" wx:if="{{value !=''}}" bindtap="parse">
+                <!-- <ui-loading wx:if="{{btnLoading == true}}" model:loading="{{btnLoading}}" color="text-white" /> -->
+                一键去水印
+            </button>
+            <button class="ui-btn borders border-orange bg-orange-thin text-orange shadow btn" wx:if="{{value == ''}}" bindtap="paste">粘贴内容</button>
+            <button class="ui-btn borders border-orange bg-orange-thin text-orange shadow btn" wx:if="{{value != ''}}" bindtap="clearVlaue">清空内容</button>
+        </view>
+    </view>
+</ui-sys>

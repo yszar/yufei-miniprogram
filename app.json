@@ -1,26 +1,46 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/video/video",
     "pages/logs/logs"
   ],
-  "subPackages": [{
-    "root": "pages/logsAndList/",
-    "name": "other",
-    "pages": [
-      "pages/applist/applist"
-    ]
-  }],
+  "subPackages": [
+    {
+      "root": "pages/logsAndList/",
+      "name": "other",
+      "pages": [
+        "applist/applist"
+      ]
+    },
+    {
+      "root": "pages/video/",
+      "name": "video",
+      "pages": [
+        "removeLogo/removeLogo",
+        "videoInfo/videoInfo"
+      ]
+    },
+    {
+      "root": "pages/text/",
+      "name": "text",
+      "pages": [
+        "text"
+      ]
+    }
+  ],
   "preloadRule": {
     "pages/home/home": {
       "network": "all",
-      "packages": ["other"]
+      "packages": [
+        "video",
+        "other",
+        "text"
+      ]
     }
   },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#FFFFFF",
-    "navigationBarTitleText": "雨非去水印",
+    "navigationBarTitleText": "雨非工具",
     "navigationBarTextStyle": "black",
     "navigationStyle": "custom",
     "initialRenderingCache": "dynamic"
@@ -31,7 +51,8 @@
     "borderStyle": "white",
     "backgroundColor": "#fff",
     "selectedColor": "#0081ff",
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/home/home",
         "iconPath": "/static/tab_icon/home.png",
         "selectedIconPath": "/static/tab_icon/home_cur.png",
@@ -45,7 +66,7 @@
       }
     ]
   },
-  "darkmode": false,
+  "darkmode": true,
   "lazyCodeLoading": "requiredComponents",
   "sitemapLocation": "sitemap.json"
 }

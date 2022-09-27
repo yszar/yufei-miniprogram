@@ -2,8 +2,8 @@
   "description": "项目配置文件",
   "setting": {
     "urlCheck": false,
-    "es6": true,
-    "enhance": true,
+    "es6": false,
+    "enhance": false,
     "postcss": true,
     "preloadBackgroundData": false,
     "minified": true,
@@ -13,7 +13,7 @@
     "autoAudits": false,
     "showShadowRootInWxmlPanel": true,
     "scopeDataCheck": false,
-    "uglifyFileName": true,
+    "uglifyFileName": false,
     "checkInvalidKey": true,
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
@@ -29,13 +29,19 @@
     },
     "useIsolateContext": false,
     "userConfirmedBundleSwitch": false,
-    "packNpmManually": false,
-    "packNpmRelationList": [],
+    "packNpmManually": true,
+    "packNpmRelationList": [
+      {
+        "packageJsonPath": "./package.json",
+        "miniprogramNpmDistDir": "./"
+      }
+    ],
     "minifyWXSS": true,
     "disableUseStrict": false,
     "minifyWXML": true,
     "showES6CompileOption": false,
     "useCompilerPlugins": [
+      "typescript",
       "sass"
     ],
     "ignoreUploadUnusedFiles": true
@@ -43,7 +49,7 @@
   "compileType": "miniprogram",
   "libVersion": "2.23.2",
   "appid": "wxae7c0ab32506ca58",
-  "projectname": "雨非去水印",
+  "projectname": "雨非工具",
   "packOptions": {
     "ignore": [],
     "include": []
@@ -71,5 +77,7 @@
   "editorSetting": {
     "tabIndent": "auto",
     "tabSize": 2
-  }
+  },
+  "cloudfunctionRoot": "cloudfunctions/",
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate/"
 }

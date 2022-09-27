@@ -1,0 +1,17 @@
+<!--pages/text/text.wxml-->
+<ui-sys>
+	<ui-navbar backtext="返回" />
+	<!-- <ui-tab class="navtab" tab="{{['语音转文字', '图片转文字','违禁词检测']}}" tpl="long" ui="bg-white radius shadow pl-5 pr-5" width="100%" align="flex-bar" value="{{NavCur}}" bind:change="tabChange" /> -->
+	<van-tabs swipeable color="#0081FF" line-width="65px" active="{{active}}" bind:change="onChange">
+		<van-tab title="语音转文字" name="audioToText">
+			<view wx:if="{{videoUrl}}" class="ui-container p-3">
+				<video class="videoPlayer" id="myVideo" model:src="{{videoUrl}}" controls autoplay></video>
+				<view class="m-3 shadow">
+					<van-button color="#0081FF" type="primary" block>语音转文字</van-button>
+				</view>
+			</view>
+		</van-tab>
+		<van-tab title="图片转文字" name="imageToText">内容 2</van-tab>
+		<van-tab title="违禁词检测" name="c">内容 3</van-tab>
+	</van-tabs>
+</ui-sys>

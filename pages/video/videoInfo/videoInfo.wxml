@@ -1,0 +1,51 @@
+<!--pages/video/video.wxml-->
+<ui-sys>
+	<ui-navbar backtext="返回" />
+	<!-- <view>
+		<ui-img mode='cover' ui="radius border" src="https://prod-3g053jsx715e5206-1306633415.tcloudbaseapp.com/static/img/banner.jpg?sign=fcda9ef48e0428806c954bf7ece410ad&t=1662578782" width='100%' height="400rpx" />
+	</view> -->
+	<ui-tab class="navtab" tab="{{['视频', '图片', '文案']}}" tpl="long" ui="bg-white radius shadow pl-5 pr-5" width="100%" align="flex-bar" model:current="{{current}}" bind:change="tabChange" />
+	<view class="ui-container">
+		<view class="p-3 text-center">
+			<!-- <ui-tab tab="{{['视频','图片','文案']}}" tpl="btn" mark="bg-blue radius" ui="bg-white radius shadow" curColor="text-white" inline scroll width="100%" /> -->
+			<!-- <ui-tab tab="{{['视频', '图片', '文案']}}" tpl="long" ui="bg-white radius shadow pl-5 pr-5" width="100%" align="flex-bar" model:current="{{current}}" bind:change="tabChange" /> -->
+		</view>
+		<view wx:if="{{current===0}}">
+			<video class="videoPlayer" id="myVideo" model:src="{{videoUrl}}" controls autoplay></video>
+			<view class=" p-4 download-btns">
+				<button class="ui-btn bg-blue shadow btn" model:disabled="{{videoDisabled}}" bindtap="save" data-msg="video">
+					<ui-loading wx:if="{{saveVideoLoading == true}}" model:loading="{{saveVideoLoading}}" color="text-white" />保存视频
+				</button>
+				<button class="ui-btn borders border-orange bg-orange-thin text-orange shadow btn" bindtap="copy" data-msg="video">复制链接</button>
+			</view>
+			<view class="pt-2 px-4 download-btns">
+				<button class="ui-btn bg-green shadow btn" model:disabled="{{videoDisabled}}" bindtap="toText" id="audioToText">
+					视频语音转文字
+				</button>
+				<button class="ui-btn bg-green shadow btn" bindtap="toText" id="imageToText">图片转文字</button>
+			</view>
+		</view>
+		<view wx:if="{{current===1}}">
+			<view class="img shadow-blur" ui="radius border shadow-blur">
+				<image class="shadow radius border" mode="widthFix" model:src="{{imageUrl}}" />
+			</view>
+			<view class="p-4 download-btns">
+				<button class="ui-btn bg-blue shadow btn" model:disabled="{{imageDisabled}}" bindtap="save" data-msg="image">
+					<ui-loading wx:if="{{saveImageLoading == true}}" model:loading="{{saveImageLoading}}" color="text-white" />保存图片
+				</button>
+				<button class="ui-btn borders border-orange bg-orange-thin text-orange shadow btn" bindtap="copy" data-msg="image">复制链接</button>
+			</view>
+		</view>
+		<view wx:if="{{current===2}}">
+			<ui-card ui="shadow m-3 radius">
+				<view class="p-4 text-black text-16 text-justify">
+					<text>{{desc}}</text>
+				</view>
+			</ui-card>
+			<view class=" p-4 download-btns">
+				<button class="ui-btn borders border-orange bg-orange-thin text-orange shadow btn" bindtap="copy" data-msg="desc">复制文案</button>
+			</view>
+		</view>
+		<ui-progress wx:if="{{progress!=0 && progress!=100}}" lg bg="bg-green-gradient" model:progress="{{progress}}" />
+	</view>
+</ui-sys>

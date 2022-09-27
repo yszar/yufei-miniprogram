@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "ui-sys": "/mp-cu/colorUI/components/ui-sys/ui-sys",
+    "ui-navbar": "/mp-cu/colorUI/components/ui-navbar/ui-navbar",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-button": "@vant/weapp/button/index"
+  }
+}
